@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# 🌌 Stellar Shield Wallet
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Stellar Shield Wallet, *It is a modern, fast, and user-friendly Web3 wallet and transaction interface that integrates seamlessly with Soroban smart contracts. The project is designed to manage financial workflows on the Stellar network in the most transparent and secure manner.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+* 🔐 **Multi-Wallet Integration:** Full integration with the official **Freighter** wallet, along with ecosystem simulation models for Albedo and xBull in a sandbox environment.
+* 🛡️ **Smart Security Detector (Security Audit):** A native module performing real-time `SSL/TLS Connection Status` checks and running a `Wallet Injection Interceptor` shield to mitigate malicious extension exploits.
+* 🔒 **Advanced Transaction & Risk Confirmation:** A two-stage confirmation modal triggered before signing transactions, presenting the user with a dedicated security risk analysis agreement checkbox.
+* 💰 **Dynamic Balance & Base Fee Tracking:** Fetches the connected wallet's live Testnet XLM balance and the network's current minimum gas fee (Base Fee) dynamically via API.
+* 🌌 **Soroban Smart Contract Deposit Workflow:** Full implementation of dynamic input fields and multi-stage transaction modals tailored for interacting with Soroban smart contract `deposit()` methods.
+* 📊 **Live Contract Event Stream Timeline:** Real-time monitoring of emitted smart contract events, utilizing auto-updating layouts and specialized **`DEPOSIT`** badges to visualize historical and live blockchain operations smoothly.
+* 🛑 **Jury Soroban Error Detail Window:** An advanced error handling boundary that captures contract failures (`FAILED` transaction status) and displays raw `jurySorobanError` stack traces inside a monospaced, highly readable, and responsive debug container.
+* 📈 **Live Asset Flow Chart (Recharts):** An interactive dynamic Area Chart enabling users to track asset fluctuations and balance changes immediately after transfers.
+* 💸 **Multi-Asset Transfer Panel:** Easily switch between `XLM`, `USDC`, and `EURC` token supports to execute secure Testnet transfers using the recipient's Public Key.
+* 📇 **Integrated Address Book:** Save frequently used addresses, secure vaults, or jury test wallets to initiate accurate transfers with a single click.
+* 🔍 **Instant Search & Filtering:** Case-insensitive, real-time query filter within the Transaction History tab using wallet addresses or Transaction Hashes (Tx Hash).
+* 📏 **Pixel-Perfect Responsive Layout:** Fully optimized with tailored layout spacing, component padding, and precise pixel dimensions (`px dimensions`) leveraging Tailwind CSS animations (`animate-in fade-in slide-in-from-bottom-2`) to ensure absolute layout stability and cross-device smoothness.
+* 🔲 **Dynamic QR Code Engine:** Generates a custom QR code matching the connected user's Public Key for error-free, quick peer-to-peer payment requests.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Installation & Local Setup
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Follow these steps to run the project locally on your machine:
 
-### `npm test`
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/mustafaColak0/Stellar-Shield.git
+   cd Stellar-Shield
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2.  **Install Dependencies:**
+    ```bash
+    npm install
+    ```
 
-### `npm run build`
+3.  **Start the Development Server:**
+    ```bash
+    npm start
+    ```
+    Your browser will automatically open the project at http://localhost:3000 .
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📸 Submission Proofs
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   
