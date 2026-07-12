@@ -26,8 +26,8 @@ Follow these steps to run the project locally on your machine:
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/mustafaColak0/Stellar-Shield.git
-   cd Stellar-Shield
+   git clone https://github.com/mustafaColak0/stellar-shield-wallet.git
+   cd stellar-connect-wallet
     ```
 
 2.  **Install Dependencies:**
