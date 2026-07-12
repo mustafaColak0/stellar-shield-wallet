@@ -2350,7 +2350,7 @@ function Header() {
                         <div className="text-rose-400 font-bold mb-0.5 group-hover:text-rose-300">
                           1. Wallet 404
                         </div>
-                        <span className="text-slate-500 text-[9px] block">
+                        <span className="text-slate-500 text-[10px] block">
                           Missing Extension
                         </span>
                       </button>
@@ -2363,7 +2363,7 @@ function Header() {
                         <div className="text-amber-400 font-bold mb-0.5 group-hover:text-amber-300">
                           2. Reject 401
                         </div>
-                        <span className="text-slate-500 text-[9px] block">
+                        <span className="text-slate-500 text-[10px] block">
                           User Aborted
                         </span>
                       </button>
