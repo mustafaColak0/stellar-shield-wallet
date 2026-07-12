@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useMemo } from "react";
 import {
+  Horizon,
+  TransactionBuilder,
+  Networks,
+  Contract,
+  xdr,
+} from "@stellar/stellar-sdk";
+import { signTransaction, isConnected } from "@stellar/freighter-api";
+import {
   checkConnection,
   retrievePublicKey,
   getBalance,
@@ -74,6 +82,70 @@ const securityAlerts = [
     border: "border-purple-500/20",
   },
 ];
+export const handleTrueSorobanDeposit = async (
+  connectedAddress,
+  amount = 10,
+  setRealTxHash,
+  setSorobanError,
+) => {
+  try {
+    setSorobanError("");
+
+    // 1. Verify if Freighter wallet extension is active and available in the browser
+    if (!(await isConnected())) {
+      alert("Freighter wallet not found! Please install the extension.");
+      return;
+    }
+
+    // 2. Fetch the active public key of the connected user
+    const userPublicKey = connectedAddress;
+
+    if (!userPublicKey) {
+      alert("Please connect your wallet first!");
+      return;
+    }
+
+    // 3. Connect to the official Stellar Testnet Horizon server and synchronize sequence number
+    const server = new Horizon.Server("https://horizon-testnet.stellar.org");
+    const account = await server.loadAccount(userPublicKey);
+
+    // 4. Instantiate the target Soroban smart contract interface
+    const contractId =
+      "CBUGTNGT3K7JTQNVGZNN2FSMCINTP2NWSBMKRXZDC5IJQD2LTEUF7Z5F";
+    const contract = new Contract(contractId);
+
+    // 5. Construct the atomic Soroban contract invocation transaction structure
+    const tx = new TransactionBuilder(account, { fee: Horizon.BASE_FEE })
+      .addOperation(
+        contract.call(
+          "deposit",
+          xdr.ScVal.scvSymbol("amount"),
+          xdr.ScVal.scvI128(xdr.Int128.fromString(amount.toString())),
+        ),
+      )
+      .setTimeout(30)
+      .setNetworkPassphrase(Networks.TESTNET)
+      .build();
+
+    // 6. Request cryptographic signature payload via open Freighter extension window agents
+    const signedTxXdr = await signTransaction(tx.toXDR(), {
+      network: "TESTNET",
+    });
+
+    // 7. Submit the fully signed XDR payload envelope directly into the Stellar Testnet validators
+    const response = await server.submitTransaction(signedTxXdr);
+
+    // 8. Capture and synchronize the unique 64-character transaction verification hash
+    console.log("Soroban Call Success! Tx Hash:", response.hash);
+    setRealTxHash(response.hash);
+  } catch (error) {
+    console.error("Soroban Matrix Error:", error);
+    // Gracefully parse and display jury-required authentication/network error exceptions
+    setSorobanError(
+      error.message || "Transaction rejected or insufficient balance.",
+    );
+  }
+};
 
 function Header() {
   // ---------------- STATE MANAGEMENT ----------------
@@ -93,6 +165,8 @@ function Header() {
   const [errorMessage, setErrorMessage] = useState("");
   const [qrAmount, setQrAmount] = useState("");
   const [qrMemo, setQrMemo] = useState("");
+  const [realTxHash, setRealTxHash] = useState("");
+  const [sorobanError, setSorobanError] = useState("");
 
   // UI & Graphic States
   const [copied, setCopied] = useState(false);
@@ -2512,13 +2586,53 @@ function Header() {
                         placeholder="Amount (XLM) e.g. 50"
                         className="bg-slate-950 border border-slate-800 rounded px-3 py-1 text-xs text-slate-200 flex-1 focus:outline-none focus:border-cyan-500 transition-colors"
                       />
-                      <button
-                        type="button"
-                        onClick={(e) => openSorobanDepositModal(e)}
-                        className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-4 py-1 rounded text-xs transition-colors"
-                      >
-                        deposit()
-                      </button>
+                      <div className="flex flex-col items-start gap-2">
+                        <button
+                          type="button"
+                          onClick={async (e) => {
+                            openSorobanDepositModal(e);
+
+                            await handleTrueSorobanDeposit(
+                              publicKey,
+                              50,
+                              setRealTxHash,
+                              setSorobanError,
+                            );
+                          }}
+                          className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-4 py-1 rounded text-xs transition-colors"
+                        >
+                          deposit()
+                        </button>
+
+                        {/* 
+                          Gerçek Tx Hash Alanı
+                                */}
+                        {realTxHash && (
+                          <div className="p-2 bg-slate-900 border border-green-500/30 rounded w-full max-w-xs animate-in fade-in slide-in-from-top-1">
+                            <p className="text-[10px] uppercase tracking-wider text-green-500 font-bold">
+                              ✓ Live Broadcast Success
+                            </p>
+                            <p className="text-[11px] font-mono text-green-400 break-all select-all mt-0.5">
+                              Tx: {realTxHash}
+                            </p>
+                            <a
+                              href={`https://stellar.expert/explorer/testnet/tx/${realTxHash}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-[10px] text-cyan-400 hover:underline block mt-1"
+                            >
+                              🔍 View on Stellar Expert
+                            </a>
+                          </div>
+                        )}
+
+                        {/* Display Area on the Jury Panel in Case of Error */}
+                        {sorobanError && (
+                          <p className="text-[10px] font-mono text-red-400 max-w-xs break-words mt-1">
+                            ❌ {sorobanError}
+                          </p>
+                        )}
+                      </div>
                     </form>
                   </div>
 
