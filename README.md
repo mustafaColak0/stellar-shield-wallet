@@ -11,7 +11,7 @@ Stellar Shield Wallet, *It is a modern, fast, and user-friendly Web3 wallet and 
 
 
 > 💡 **Want to see the full, uncut workflow?** > If you would like to watch the complete step-by-step wallet connection, multi-asset transfer processes, and live network confirmations in full detail, you can watch our comprehensive video here:  
-> 👉 **[Click Here to Watch the Full Detailed Project Demo Video]()**
+> 👉  **[Click Here to Watch the Full Detailed Project Demo Video](https://drive.google.com/file/d/1II4ByR4UaOZgnzGMrpXjZFrx0AV5reQe/view)**
 
 ---
 
@@ -40,7 +40,7 @@ Follow these steps to run the project locally on your machine:
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/mustafaColak0/stellar-shield-wallet.git
-   cd stellar-connect-wallet
+   cd stellar-shield-wallet
     ```
 
 2.  **Install Dependencies:**
