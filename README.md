@@ -62,41 +62,49 @@ Follow these steps to run the project locally on your machine:
 
 1. Wallet Connected State & Live Dashboard (Dashboard Overview)
 Proof of successful Freighter extension connection showing the active account state, real-time simulated network load, gas metrics, and the dynamic asset flow area chart tracking historical Testnet balances:
-<img width="1918" height="873" alt="dashboard2" src="https://github.com/user-attachments/assets/192c90f1-bc7b-409f-9e0a-ca95bc08eea4" />
-<img width="872" height="722" alt="dashboard3" src="https://github.com/user-attachments/assets/b20c7837-00d6-4223-ba93-47bc939185c2" />
+<img width="1918" height="873" alt="dashboard2" src="https://github.com/user-attachments/assets/6ccda133-b401-409b-8856-d72e2b9442d1" />
+<img width="872" height="722" alt="dashboard3" src="https://github.com/user-attachments/assets/7ad42cde-e9c2-45f3-b2cc-148504f98e5b" />
+
 
 
 2. Multi-Asset Transfer Engine with Compliance Filters
 The cross-asset ecosystem panel (supporting XLM, USDC, EURC) equipped with real-time compliance network logs, integrated quick contacts, and the automated "Sign & Send Transaction" interface:
-<img width="1918" height="876" alt="transfer2" src="https://github.com/user-attachments/assets/86253bec-1ec8-4088-92c4-fa783609f6ad" />
-<img width="423" height="377" alt="sorobanauthmatrix" src="https://github.com/user-attachments/assets/cacfaa29-2c43-4699-a06b-8efb65f96139" />
-<img width="845" height="503" alt="transfer_enforced" src="https://github.com/user-attachments/assets/2caf8b6e-cdc5-4111-962a-c7e6d586d7b2" />
+<img width="1918" height="876" alt="transfer2" src="https://github.com/user-attachments/assets/43b7ae37-7d09-40a3-b898-143e9f2d9036" />
+<img width="423" height="377" alt="sorobanauthmatrix" src="https://github.com/user-attachments/assets/a4063688-8369-4caa-9e2f-08d0788ba859" />
+<img width="845" height="503" alt="transfer_enforced" src="https://github.com/user-attachments/assets/5d5bb9ba-56a0-4eb6-8bcd-751bdb10152d" />
+
+
 
 
 3. Dynamic QR Code Peer-to-Peer Payment Request Engine
 A real-time payment address sharing layout that auto-generates a high-contrast verifiable QR code corresponding directly to the connected user's Public Key, including options for custom amounts and memos:
-<img width="1918" height="861" alt="qrkod2" src="https://github.com/user-attachments/assets/8e8a42b0-0804-4409-888e-d26645c7f18c" />
+<img width="1918" height="861" alt="qrkod2" src="https://github.com/user-attachments/assets/3cb5ae92-b2a2-44d5-8f06-80d5f5d80300" />
+
 
 
 4. Level 2 Security Audit & Soroban Interaction Matrix
 The centralized simulation sandbox showing automated code scans, cryptographic binding logs, a custom transaction monitor, and live exception/abort test handlers:
-<img width="1918" height="870" alt="security audit 2" src="https://github.com/user-attachments/assets/d1226654-5330-4502-be8b-439e03dd6e7c" />
+<img width="1918" height="870" alt="security audit 2" src="https://github.com/user-attachments/assets/e595a182-4b41-4496-b91a-4dd7bd9d838b" />
+
 
 
 5. Soroban Contract Interface & Emitted Event Timeline
 The core Smart Contract execution window containing real-time crowdfunding progress bars, a direct `deposit()` execution method, and an isolated live ledger contract event stream listing verifiable asset badges:
-<img width="886" height="700" alt="security_audit_deposit" src="https://github.com/user-attachments/assets/784c795a-9a37-457a-be57-f8f95613df9b" />
+<img width="886" height="700" alt="security_audit_deposit" src="https://github.com/user-attachments/assets/edbbb585-91fc-4e0b-93b5-b70b9ad23c14" />
+
 
 
 6. Integrated Address Book for Verified Test Accounts
 A secure, custom local registry allowing users to manage, save, and launch quick-transfer triggers (`Send Money`) directly to designated jury test wallets or secure vaults:
-<img width="1918" height="863" alt="adressbook2" src="https://github.com/user-attachments/assets/8c7bed4e-4a17-4344-84cf-6051ec664018" />
+<img width="1918" height="863" alt="adressbook2" src="https://github.com/user-attachments/assets/4728197a-e93b-4d24-8bd8-cc3f5d34488b" />
+
 
 
 7. Optimized Transaction Ledger (Transaction History UI)
 A real-time query-filtered interface mapped out with clean responsive constraints, designed to trace case-insensitive searches for transaction hashes and target addresses:
-<img width="1912" height="863" alt="Transaction History 2" src="https://github.com/user-attachments/assets/181ec98d-894a-4ca5-b134-275d3df389e8" />
-<img width="881" height="312" alt="transaction_history_process" src="https://github.com/user-attachments/assets/222815cd-6fdb-4077-9a7f-ebfdfc45e382" />
+<img width="1912" height="863" alt="Transaction History 2" src="https://github.com/user-attachments/assets/c1704740-fa60-474b-9c6a-6de623887d84" />
+<img width="881" height="312" alt="transaction_history_process" src="https://github.com/user-attachments/assets/6766b6f6-642f-40c4-86b5-dee11bb8c7ff" />
+
 
 --
 
