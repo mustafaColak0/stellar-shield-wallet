@@ -2385,7 +2385,6 @@ function Header() {
                     </div>
                   </div>
                 </div>
-
                 {/* Error Detail Window */}
                 {jurySorobanError && juryTxStatus === "FAILED" && (
                   <div className="p-3 bg-slate-950 border border-rose-950 text-rose-400 rounded-xl text-xs font-mono break-all whitespace-pre-wrap animate-in fade-in slide-in-from-bottom-2">
