@@ -639,7 +639,7 @@ function Header() {
 
     if (trimmedAddress.length !== 56) {
       setErrorMessage(
-        "Geçersiz cüzdan adresi! Adres 56 haneden kısa veya uzun olamaz.",
+        "Invalid wallet address! The address must be exactly 56 characters long.",
       );
       return;
     }
@@ -654,13 +654,15 @@ function Header() {
 
     if (isNameExists) {
       setErrorMessage(
-        "Bu isim zaten rehberinizde kayıtlı! Lütfen farklı bir isim giriniz.",
+        "This name is already in your contacts! Please enter a different name.",
       );
       return;
     }
 
     if (isAddressExists) {
-      setErrorMessage("Bu cüzdan adresi zaten sisteminizde kayıtlı!");
+      setErrorMessage(
+        "This wallet address is already registered in your system!",
+      );
       return;
     }
 
