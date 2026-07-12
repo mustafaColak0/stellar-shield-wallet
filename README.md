@@ -1,6 +1,6 @@
 # 🌌 Stellar Shield Wallet
 
-Stellar Shield Wallet, *It is a modern, fast, and user-friendly Web3 wallet and transaction interface that integrates seamlessly with Soroban smart contracts. The project is designed to manage financial workflows on the Stellar network in the most transparent and secure manner.
+Stellar Shield Wallet is a modern, fast, and user-friendly Web3 wallet and transaction interface that integrates seamlessly with Soroban smart contracts. The project is designed to manage financial workflows on the Stellar network in the most transparent and secure manner.
 
 ---
 
