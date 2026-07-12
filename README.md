@@ -101,6 +101,7 @@ A real-time query-filtered interface mapped out with clean responsive constraint
 *   **Real-Time Decentralized Phishing Registry:** Connect the native Security Audit detector to open-source Stellar phishing APIs and blacklist databases to throw high-severity UI alerts before broadcasting transactions to flagged malicious endpoints.
 *   **Automated Fee-Bump Enabler:** Implement a smart transaction relayer that automatically attaches fee-bumps to critical Soroban contract interactions during heavy Testnet/Mainnet network congestion states.
 
+--
 
 🧬 Tech Stack
 Frontend: React.js (JavaScript / JSX)
