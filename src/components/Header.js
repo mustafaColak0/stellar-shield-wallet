@@ -2533,7 +2533,7 @@ function Header() {
                             className="p-2.5 bg-slate-950 border border-slate-900/60 rounded-xl flex items-center justify-between gap-2 animate-in fade-in"
                           >
                             <div className="flex items-center gap-1.5 truncate">
-                              <span className="text-[9px] px-1 py-0.2 rounded font-black bg-cyan-950 text-cyan-400 border border-cyan-900/40 shrink-0">
+                              <span className="text-[9px] px-1 py-0.2 rounded font-black bg-cyan-960 text-cyan-400 border border-cyan-900/40 shrink-0">
                                 DEPOSIT
                               </span>
                               <span className="text-slate-400 text-[10px] truncate">
