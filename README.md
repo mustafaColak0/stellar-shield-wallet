@@ -45,4 +45,70 @@ Follow these steps to run the project locally on your machine:
 
 ## 📸 Submission Proofs
 
-   
+💡 Jury Evaluation Note: The mandatory visual proofs requested in the Seviye 2 Submission Checklist are mapped directly below.
+
+1. Wallet Connected State & Live Dashboard (Dashboard Overview)
+Proof of successful Freighter extension connection showing the active account state, real-time simulated network load, gas metrics, and the dynamic asset flow area chart tracking historical Testnet balances:
+<img width="1918" height="873" alt="dashboard2" src="https://github.com/user-attachments/assets/192c90f1-bc7b-409f-9e0a-ca95bc08eea4" />
+<img width="872" height="722" alt="dashboard3" src="https://github.com/user-attachments/assets/b20c7837-00d6-4223-ba93-47bc939185c2" />
+
+
+2. Multi-Asset Transfer Engine with Compliance Filters
+The cross-asset ecosystem panel (supporting XLM, USDC, EURC) equipped with real-time compliance network logs, integrated quick contacts, and the automated "Sign & Send Transaction" interface:
+<img width="1918" height="876" alt="transfer2" src="https://github.com/user-attachments/assets/86253bec-1ec8-4088-92c4-fa783609f6ad" />
+<img width="423" height="377" alt="sorobanauthmatrix" src="https://github.com/user-attachments/assets/cacfaa29-2c43-4699-a06b-8efb65f96139" />
+<img width="845" height="503" alt="transfer_enforced" src="https://github.com/user-attachments/assets/2caf8b6e-cdc5-4111-962a-c7e6d586d7b2" />
+
+
+3. Dynamic QR Code Peer-to-Peer Payment Request Engine
+A real-time payment address sharing layout that auto-generates a high-contrast verifiable QR code corresponding directly to the connected user's Public Key, including options for custom amounts and memos:
+<img width="1918" height="861" alt="qrkod2" src="https://github.com/user-attachments/assets/8e8a42b0-0804-4409-888e-d26645c7f18c" />
+
+
+4. Level 2 Security Audit & Soroban Interaction Matrix
+The centralized simulation sandbox showing automated code scans, cryptographic binding logs, a custom transaction monitor, and live exception/abort test handlers:
+<img width="1918" height="870" alt="security audit 2" src="https://github.com/user-attachments/assets/d1226654-5330-4502-be8b-439e03dd6e7c" />
+
+
+5. Soroban Contract Interface & Emitted Event Timeline
+The core Smart Contract execution window containing real-time crowdfunding progress bars, a direct `deposit()` execution method, and an isolated live ledger contract event stream listing verifiable asset badges:
+<img width="886" height="700" alt="security_audit_deposit" src="https://github.com/user-attachments/assets/784c795a-9a37-457a-be57-f8f95613df9b" />
+
+
+6. Integrated Address Book for Verified Test Accounts
+A secure, custom local registry allowing users to manage, save, and launch quick-transfer triggers (`Send Money`) directly to designated jury test wallets or secure vaults:
+<img width="1918" height="863" alt="adressbook2" src="https://github.com/user-attachments/assets/8c7bed4e-4a17-4344-84cf-6051ec664018" />
+
+
+7. Optimized Transaction Ledger (Transaction History UI)
+A real-time query-filtered interface mapped out with clean responsive constraints, designed to trace case-insensitive searches for transaction hashes and target addresses:
+<img width="1912" height="863" alt="Transaction History 2" src="https://github.com/user-attachments/assets/181ec98d-894a-4ca5-b134-275d3df389e8" />
+<img width="881" height="312" alt="transaction_history_process" src="https://github.com/user-attachments/assets/222815cd-6fdb-4077-9a7f-ebfdfc45e382" />
+
+--
+
+🗺️ Future Roadmap
+
+### 🔄 Phase 1: Soroban Optimization & Verification (Short-Term)
+*   **Soroban Auth Next-Gen Integration:** Migrate from standard invocations to Soroban's advanced `isValidSignature` and multi-signature authorization frameworks for institutional vault workflows.
+*   **Automated Contract Unit-Testing:** Embed an isolated client-side WebAssembly (WASM) simulation boundary allowing developers to test Soroban contract custom exceptions and gas limits directly inside the dashboard.
+
+### 🌐 Phase 2: Mobile Ecosystem & Deep Linking (Medium-Term)
+*   **WalletConnect v2 & Deep Linking Architecture:** Expand the Multi-Wallet panel by integrating native WalletConnect infrastructure, letting mobile users trigger instant biometric transaction sign requests on **LOBSTR**, **Vibrant**, or **xbull mobile**.
+*   **Dynamic QR Intent Protocol (SEP-0007):** Upgrade the QR Code Engine to generate dynamic, compliant `stellar:` URI payment intents, embedding asset types, exact amounts, and memo hashes natively into the matrix.
+
+### 🛡️ Phase 3: Advanced Compliance & Security AI (Long-Term)
+*   **Real-Time Decentralized Phishing Registry:** Connect the native Security Audit detector to open-source Stellar phishing APIs and blacklist databases to throw high-severity UI alerts before broadcasting transactions to flagged malicious endpoints.
+*   **Automated Fee-Bump Enabler:** Implement a smart transaction relayer that automatically attaches fee-bumps to critical Soroban contract interactions during heavy Testnet/Mainnet network congestion states.
+
+
+🧬 Tech Stack
+Frontend: React.js (JavaScript / JSX)
+
+Styling: Tailwind CSS (Fully Responsive Layout)
+
+Icons: Lucide React
+
+Charts: Recharts
+
+Stellar SDK: @stellar/freighter-api
