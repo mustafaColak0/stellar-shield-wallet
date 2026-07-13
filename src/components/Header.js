@@ -2605,7 +2605,7 @@ function Header() {
                         </button>
 
                         {/* 
-                          Gerçek Tx Hash Alanı
+                          Actual Transaction Hash Field
                                 */}
                         {realTxHash && (
                           <div className="p-2 bg-slate-900 border border-green-500/30 rounded w-full max-w-xs animate-in fade-in slide-in-from-top-1">
