@@ -17,22 +17,22 @@ Stellar Shield Wallet is a modern, fast, and user-friendly Web3 wallet and trans
 
 ## 🚀 Features
 
-🔐 Multi-Wallet Integration: Full integration with the official Freighter wallet, along with ecosystem simulation models for Albedo and xBull in a sandbox environment.
-⚡ Soroban RPC Transaction Simulation: Advanced transaction simulation that completely eliminates 400 Bad Request errors! Before being broadcasted to the network, transactions are simulated via rpc.Server using prepareTransaction. Gas and resource limits are automatically calculated, ensuring zero-error submissions.
-🧠 Safe XDR Data Parsing (nativeToScVal): Employs the latest @stellar/stellar-sdk standards to resolve low-level XDR parsing errors (such as invalid u32 value). Utilizing nativeToScVal with the i128 data type ensures that BigInt values are passed securely and flawlessly to the smart contract.
-🌌 Soroban Smart Contract Deposit Workflow: A user-friendly dynamic amount input field and a multi-stage transaction verification modal tailored for interacting with Soroban smart contract deposit() methods. It integrates 100% seamlessly with the Freighter wallet, instantly triggering the signing window directly in the user's browser.
-🟢 Live Broadcast Success UI: Once the transaction is successfully confirmed on-chain, this displays a sleek, green success notification panel showcasing the unique 64-character Transaction Hash and providing a direct verification link to the Stellar Expert Explorer.
-📊 Live Contract Event Stream Timeline: Real-time monitoring of emitted smart contract events, utilizing auto-updating layouts and specialized DEPOSIT badges to visualize historical and live blockchain operations smoothly.
-🛑 Jury Soroban Error Detail Window: An advanced error handling boundary that captures contract failures (FAILED transaction status) and displays raw jurySorobanError stack traces inside a monospaced, highly readable, and responsive debug container.
-🛡️ Smart Security Detector (Security Audit): A native module performing real-time SSL/TLS Connection Status checks and running a Wallet Injection Interceptor shield to mitigate malicious extension exploits.
-🔒 Advanced Transaction & Risk Confirmation: A two-stage confirmation modal triggered before signing transactions, presenting the user with a dedicated security risk analysis agreement checkbox.
-💰 Dynamic Balance & Base Fee Tracking: Fetches the connected wallet's live Testnet XLM balance and the network's current minimum gas fee (Base Fee) dynamically via API.
-💸 Multi-Asset Transfer Panel: Easily switch between XLM, USDC, and EURC token supports to execute secure Testnet transfers using the recipient's Public Key.
-📈 Live Asset Flow Chart (Recharts): An interactive dynamic Area Chart enabling users to track asset fluctuations and balance changes immediately after transfers.
-📇 Integrated Address Book: Save frequently used addresses, secure vaults, or jury test wallets to initiate accurate transfers with a single click.
-🔍 Instant Search & Filtering: Case-insensitive, real-time query filter within the Transaction History tab using wallet addresses or Transaction Hashes (Tx Hash).
-🔲 Dynamic QR Code Engine: Generates a custom QR code matching the connected user's Public Key for error-free, quick peer-to-peer payment requests.
-📏 Pixel-Perfect Responsive Layout: Fully optimized with tailored layout spacing, component padding, and precise pixel dimensions (px dimensions) leveraging Tailwind CSS animations (animate-in fade-in slide-in-from-bottom-2) to ensure absolute layout stability and cross-device smoothness.
+* 🔐 **Multi-Wallet Integration:** Full integration with the official **Freighter** wallet, along with ecosystem simulation models for Albedo and xBull in a sandbox environment.
+* ⚡ **Soroban RPC Transaction Simulation:** Advanced transaction simulation that completely eliminates `400 Bad Request` errors! Before being broadcasted to the network, transactions are simulated via `rpc.Server` using `prepareTransaction`. Gas and resource limits are automatically calculated, ensuring zero-error submissions.
+* 🧠 **Safe XDR Data Parsing (`nativeToScVal`):** Employs the latest `@stellar/stellar-sdk` standards to resolve low-level XDR parsing errors (such as `invalid u32 value`). Utilizing `nativeToScVal` with the `i128` data type ensures that `BigInt` values are passed securely and flawlessly to the smart contract.
+* 🌌 **Soroban Smart Contract Deposit Workflow:** A user-friendly dynamic amount input field and a multi-stage transaction verification modal tailored for interacting with Soroban smart contract `deposit()` methods. It integrates 100% seamlessly with the Freighter wallet, instantly triggering the signing window directly in the user's browser.
+* 🟢 **Live Broadcast Success UI:** Once the transaction is successfully confirmed on-chain, this displays a sleek, green success notification panel showcasing the unique 64-character **Transaction Hash** and providing a direct verification link to the **Stellar Expert Explorer**.
+* 📊 **Live Contract Event Stream Timeline:** Real-time monitoring of emitted smart contract events, utilizing auto-updating layouts and specialized **`DEPOSIT`** badges to visualize historical and live blockchain operations smoothly.
+* 🛑 **Jury Soroban Error Detail Window:** An advanced error handling boundary that captures contract failures (`FAILED` transaction status) and displays raw `jurySorobanError` stack traces inside a monospaced, highly readable, and responsive debug container.
+* 🛡️ **Smart Security Detector (Security Audit):** A native module performing real-time `SSL/TLS Connection Status` checks and running a `Wallet Injection Interceptor` shield to mitigate malicious extension exploits.
+* 🔒 **Advanced Transaction & Risk Confirmation:** A two-stage confirmation modal triggered before signing transactions, presenting the user with a dedicated security risk analysis agreement checkbox.
+* 💰 **Dynamic Balance & Base Fee Tracking:** Fetches the connected wallet's live Testnet XLM balance and the network's current minimum gas fee (Base Fee) dynamically via API.
+* 💸 **Multi-Asset Transfer Panel:** Easily switch between `XLM`, `USDC`, and `EURC` token supports to execute secure Testnet transfers using the recipient's Public Key.
+* 📈 **Live Asset Flow Chart (Recharts):** An interactive dynamic Area Chart enabling users to track asset fluctuations and balance changes immediately after transfers.
+* 📇 **Integrated Address Book:** Save frequently used addresses, secure vaults, or jury test wallets to initiate accurate transfers with a single click.
+* 🔍 **Instant Search & Filtering:** Case-insensitive, real-time query filter within the Transaction History tab using wallet addresses or Transaction Hashes (Tx Hash).
+* 🔲 **Dynamic QR Code Engine:** Generates a custom QR code matching the connected user's Public Key for error-free, quick peer-to-peer payment requests.
+* 📏 **Pixel-Perfect Responsive Layout:** Fully optimized with tailored layout spacing, component padding, and precise pixel dimensions (`px dimensions`) leveraging Tailwind CSS animations (`animate-in fade-in slide-in-from-bottom-2`) to ensure absolute layout stability and cross-device smoothness.
 
 ---
 
