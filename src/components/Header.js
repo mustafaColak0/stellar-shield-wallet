@@ -572,7 +572,7 @@ function Header() {
     if (e && e.preventDefault) e.preventDefault();
 
     if (!fundAmount || parseFloat(fundAmount) <= 0) return;
-
+    setAmount(fundAmount);
     // Display verified on-chain contract address to ensure end-to-end auditability
     const myRealContractId =
       "CBUGTNGT3K7JTQNVGZNN2FSMCIWTP2NWSBMKRXZDC5IJQD2LTEUF7Z5F";
@@ -645,6 +645,7 @@ function Header() {
       if (!isNaN(parsedBalance)) {
         const currentBal = parsedBalance - addedAmount;
         setBalance(currentBal.toFixed(4));
+
         if (typeof setWalletAsset === "function")
           setWalletAsset((prev) => prev - addedAmount);
 
@@ -2375,7 +2376,7 @@ function Header() {
 
             {/* SECURITY AUDIT & JURY VERIFICATION MATRIX */}
             {activeTab === "security" && (
-              <div className="w-full max-w-5xl mx-auto space-y-6 text-slate-300 font-sans p-6 rounded-2xl bg-[#030712] border border-slate-900 shadow-2xl animate-in fade-in zoom-in-95 duration-300">
+              <div className="w-full max-w-5xl mx-auto space-y-6 text-slate-300 font-sans p-6 pb-32 rounded-2xl bg-[#030712] border border-slate-900 shadow-2xl animate-in fade-in zoom-in-95 duration-300">
                 {/* Top Header and Scan Button */}
                 <div className="border-b border-slate-900 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div>
