@@ -5,6 +5,11 @@ import {
   Networks,
   Contract,
   xdr,
+  Operation,
+  Address,
+  StrKey,
+  nativeToScVal,
+  rpc,
 } from "@stellar/stellar-sdk";
 import { signTransaction, isConnected } from "@stellar/freighter-api";
 import {
@@ -14,6 +19,7 @@ import {
   sendXlmTransaction,
   fetchNetworkFee,
 } from "./Freighter";
+
 import { QRCodeSVG } from "qrcode.react";
 import {
   Wallet,
@@ -82,6 +88,7 @@ const securityAlerts = [
     border: "border-purple-500/20",
   },
 ];
+
 export const handleTrueSorobanDeposit = async (
   connectedAddress,
   amount = 10,
@@ -93,57 +100,93 @@ export const handleTrueSorobanDeposit = async (
 
     // 1. Verify if Freighter wallet extension is active and available in the browser
     if (!(await isConnected())) {
-      alert("Freighter wallet not found! Please install the extension.");
+      setSorobanError(
+        "Freighter wallet not found! Please install the extension.",
+      );
       return;
     }
 
     // 2. Fetch the active public key of the connected user
-    const userPublicKey = connectedAddress;
+    let userPublicKey = connectedAddress;
+    if (!userPublicKey) {
+      try {
+        userPublicKey = await retrievePublicKey();
+      } catch (err) {
+        setSorobanError("Please connect your wallet first!");
+        return;
+      }
+    }
 
     if (!userPublicKey) {
-      alert("Please connect your wallet first!");
+      setSorobanError("Please connect your wallet first!");
       return;
     }
 
-    // 3. Connect to the official Stellar Testnet Horizon server and synchronize sequence number
-    const server = new Horizon.Server("https://horizon-testnet.stellar.org");
-    const account = await server.loadAccount(userPublicKey);
+    // 3. Connect to Horizon (for account) and Soroban RPC (for simulation)
+    const horizonServer = new Horizon.Server(
+      "https://horizon-testnet.stellar.org",
+    );
+    const rpcServer = new rpc.Server("https://soroban-testnet.stellar.org");
+    const account = await horizonServer.loadAccount(userPublicKey);
 
-    // 4. Instantiate the target Soroban smart contract interface
+    // 4. Target Soroban Smart Contract ID
     const contractId =
-      "CBUGTNGT3K7JTQNVGZNN2FSMCINTP2NWSBMKRXZDC5IJQD2LTEUF7Z5F";
-    const contract = new Contract(contractId);
+      "CBUGTNGT3K7JTQNVGZNN2FSMCIWTP2NWSBMKRXZDC5IJQD2LTEUF7Z5F";
 
-    // 5. Construct the atomic Soroban contract invocation transaction structure
-    const tx = new TransactionBuilder(account, { fee: Horizon.BASE_FEE })
+    // 5. Construct the initial transaction structure
+    const tx = new TransactionBuilder(account, { fee: "10000" })
       .addOperation(
-        contract.call(
-          "deposit",
-          xdr.ScVal.scvSymbol("amount"),
-          xdr.ScVal.scvI128(xdr.Int128.fromString(amount.toString())),
-        ),
+        Operation.invokeContractFunction({
+          contract: contractId,
+          function: "send_feedback",
+          args: [
+            nativeToScVal(`Simulated deposit of ${amount} XLM!`, {
+              type: "string",
+            }),
+          ],
+        }),
       )
-      .setTimeout(30)
+      .setTimeout(180)
       .setNetworkPassphrase(Networks.TESTNET)
       .build();
 
-    // 6. Request cryptographic signature payload via open Freighter extension window agents
-    const signedTxXdr = await signTransaction(tx.toXDR(), {
+    // 6. SIMULATION: Prepare the transaction with Soroban RPC
+    console.log("Simulating transaction on Soroban RPC...");
+    const preparedTx = await rpcServer.prepareTransaction(tx);
+
+    // 7. Request cryptographic signature from Freighter using the simulated transaction
+    const signedTxXdr = await signTransaction(preparedTx.toXDR(), {
       network: "TESTNET",
+      address: userPublicKey,
     });
 
-    // 7. Submit the fully signed XDR payload envelope directly into the Stellar Testnet validators
-    const response = await server.submitTransaction(signedTxXdr);
+    if (!signedTxXdr) {
+      throw new Error("Transaction signature rejected by the user.");
+    }
 
-    // 8. Capture and synchronize the unique 64-character transaction verification hash
-    console.log("Soroban Call Success! Tx Hash:", response.hash);
-    setRealTxHash(response.hash);
+    // 8. Submit the fully signed transaction directly to the Soroban RPC
+    console.log("Submitting transaction to network...");
+    const finalTx = TransactionBuilder.fromXDR(signedTxXdr, Networks.TESTNET);
+
+    const submission = await rpcServer.sendTransaction(finalTx);
+
+    if (submission.status === "ERROR") {
+      throw new Error(
+        "Soroban Execution Error: " + JSON.stringify(submission.errorResult),
+      );
+    }
+
+    console.log("Soroban Call Submitted! Tx Hash:", submission.hash);
+    if (typeof setRealTxHash === "function") {
+      setRealTxHash(submission.hash);
+    }
   } catch (error) {
     console.error("Soroban Matrix Error:", error);
-    // Gracefully parse and display jury-required authentication/network error exceptions
-    setSorobanError(
-      error.message || "Transaction rejected or insufficient balance.",
-    );
+    if (typeof setSorobanError === "function") {
+      setSorobanError(
+        error.message || "Transaction rejected or insufficient balance.",
+      );
+    }
   }
 };
 
@@ -887,7 +930,9 @@ function Header() {
       : "MEMO_TEXT (Shielded 🛡️)";
 
   // Checks whether the entered address is a valid 56-character Stellar address starting with G or C.
-  const isValidStellarAddress = /^[GC][A-Z2-7]{55}$/.test(destination);
+  const isValidStellarAddress = /^G[A-Z2-7]{55}$|^C[A-Z0-9]{55}$/i.test(
+    destination,
+  );
 
   // 2. DYNAMIC TRUSTLINE
   let trustlineStatus = "PENDING (Check Address)";
@@ -2576,7 +2621,10 @@ function Header() {
 
                     {/* Deposit Button and Input Field */}
                     <form
-                      onSubmit={openSorobanDepositModal}
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        openSorobanDepositModal(e);
+                      }}
                       className="mt-4 flex gap-2"
                     >
                       <input
@@ -2592,9 +2640,11 @@ function Header() {
                           onClick={async (e) => {
                             openSorobanDepositModal(e);
 
+                            const depositAmount = Number(fundAmount) || 10;
+
                             await handleTrueSorobanDeposit(
                               publicKey,
-                              50,
+                              depositAmount,
                               setRealTxHash,
                               setSorobanError,
                             );
@@ -2604,29 +2654,7 @@ function Header() {
                           deposit()
                         </button>
 
-                        {/* 
-                          Actual Transaction Hash Field
-                                */}
-                        {realTxHash && (
-                          <div className="p-2 bg-slate-900 border border-green-500/30 rounded w-full max-w-xs animate-in fade-in slide-in-from-top-1">
-                            <p className="text-[10px] uppercase tracking-wider text-green-500 font-bold">
-                              ✓ Live Broadcast Success
-                            </p>
-                            <p className="text-[11px] font-mono text-green-400 break-all select-all mt-0.5">
-                              Tx: {realTxHash}
-                            </p>
-                            <a
-                              href={`https://stellar.expert/explorer/testnet/tx/${realTxHash}`}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="text-[10px] text-cyan-400 hover:underline block mt-1"
-                            >
-                              🔍 View on Stellar Expert
-                            </a>
-                          </div>
-                        )}
-
-                        {/* Display Area on the Jury Panel in Case of Error */}
+                        {/* Highlight only if there is an error */}
                         {sorobanError && (
                           <p className="text-[10px] font-mono text-red-400 max-w-xs break-words mt-1">
                             ❌ {sorobanError}
@@ -2634,6 +2662,31 @@ function Header() {
                         )}
                       </div>
                     </form>
+
+                    {/* 
+                        Hash panel
+                    */}
+                    {realTxHash && (
+                      <div className="mt-3 p-2.5 bg-emerald-950/40 border border-emerald-500/30 rounded text-left animate-in fade-in slide-in-from-top-1">
+                        <p className="text-[10px] uppercase tracking-wider text-green-400 font-bold flex items-center gap-1">
+                          <span>✓</span> Live Broadcast Success
+                        </p>
+                        <p className="text-[10px] font-mono text-slate-300 break-all mt-1 select-all">
+                          Tx Hash:{" "}
+                          <span className="text-cyan-400 font-bold">
+                            {realTxHash}
+                          </span>
+                        </p>
+                        <a
+                          href={`https://stellar.expert/explorer/testnet/tx/${realTxHash}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[10px] text-cyan-400 hover:text-cyan-300 underline mt-1 block font-mono"
+                        >
+                          View on Stellar Expert Explorer ↗
+                        </a>
+                      </div>
+                    )}
                   </div>
 
                   {/* Right Card: Live Contract Event Stream */}
